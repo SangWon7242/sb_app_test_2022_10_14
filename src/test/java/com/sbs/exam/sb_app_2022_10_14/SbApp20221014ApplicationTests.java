@@ -1,6 +1,6 @@
 package com.sbs.exam.sb_app_2022_10_14;
 
-import com.sbs.exam.sb_app_2022_10_14.app.article.dto.Article;
+import com.sbs.exam.sb_app_2022_10_14.app.article.vo.Article;
 import com.sbs.exam.sb_app_2022_10_14.app.article.service.ArticleService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
