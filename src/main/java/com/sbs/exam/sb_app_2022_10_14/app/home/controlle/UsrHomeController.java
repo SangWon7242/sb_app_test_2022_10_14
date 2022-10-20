@@ -1,4 +1,4 @@
-package com.sbs.exam.sb_app_2022_10_14.app.article.controller;
+package com.sbs.exam.sb_app_2022_10_14.app.home.controlle;
 
 import com.sbs.exam.sb_app_2022_10_14.app.article.vo.Article;
 import org.springframework.stereotype.Controller;
