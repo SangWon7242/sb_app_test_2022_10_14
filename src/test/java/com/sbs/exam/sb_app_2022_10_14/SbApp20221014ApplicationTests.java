@@ -11,13 +11,5 @@ import java.util.List;
 
 @SpringBootTest
 class AppTest {
-	@Autowired
-	private ArticleService articleService;
 
-	@Test
-	@DisplayName("게시물 리스트 반환")
-	void t1() {
-		List<Article> articles = articleService.getArticles();
-		System.out.println(articles);
-	}
 }
