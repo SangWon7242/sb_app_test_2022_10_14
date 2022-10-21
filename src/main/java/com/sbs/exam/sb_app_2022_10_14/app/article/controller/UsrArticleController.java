@@ -16,7 +16,6 @@ public class UsrArticleController {
   @Autowired
   private ArticleService articleService;
 
-  // 액션메서드 시작
   @RequestMapping("/usr/article/doAdd")
   @ResponseBody
   public Article doAdd(String title, String body) {
@@ -68,6 +67,4 @@ public class UsrArticleController {
 
     return id + "번 게시물을 수정하였습니다.";
   }
-
-  // 액션 메서드 끝
 }
