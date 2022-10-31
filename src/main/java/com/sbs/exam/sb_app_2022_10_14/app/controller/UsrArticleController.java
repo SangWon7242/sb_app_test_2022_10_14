@@ -1,13 +1,12 @@
-package com.sbs.exam.sb_app_2022_10_14.app.article.controller;
+package com.sbs.exam.sb_app_2022_10_14.app.controller;
 
-import com.sbs.exam.sb_app_2022_10_14.app.article.service.ArticleService;
-import com.sbs.exam.sb_app_2022_10_14.app.article.vo.Article;
+import com.sbs.exam.sb_app_2022_10_14.app.service.ArticleService;
+import com.sbs.exam.sb_app_2022_10_14.app.vo.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller

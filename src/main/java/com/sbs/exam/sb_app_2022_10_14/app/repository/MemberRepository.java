@@ -1,11 +1,10 @@
-package com.sbs.exam.sb_app_2022_10_14.app.member.repository;
+package com.sbs.exam.sb_app_2022_10_14.app.repository;
 
-import com.sbs.exam.sb_app_2022_10_14.app.member.vo.Member;
+import com.sbs.exam.sb_app_2022_10_14.app.vo.Member;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.security.core.parameters.P;
 
 @Mapper
 public interface MemberRepository {

@@ -1,9 +1,8 @@
-package com.sbs.exam.sb_app_2022_10_14.app.article.vo;
+package com.sbs.exam.sb_app_2022_10_14.app.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.ibatis.type.Alias;
 
 @Data
 @NoArgsConstructor
