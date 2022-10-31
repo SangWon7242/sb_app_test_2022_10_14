@@ -13,6 +13,9 @@ public class ResultData {
   private ResultData() {
 
   }
+  public static ResultData from(String resultCode, String msg) {
+    return from(resultCode, msg, null);
+  }
 
   public static ResultData from(String resultCode, String msg, Object data1) {
     ResultData rd = new ResultData();
