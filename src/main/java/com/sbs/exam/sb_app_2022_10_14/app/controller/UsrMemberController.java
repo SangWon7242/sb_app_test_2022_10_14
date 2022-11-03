@@ -47,8 +47,8 @@ public class UsrMemberController {
 
     ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname, cellphoneNo, email);
 
-    if ( joinRd.isFail() ) {
-      return (ResultData)joinRd;
+    if (joinRd.isFail()) {
+      return (ResultData) joinRd;
     }
 
     Member member = memberService.getMemberById(joinRd.getData1());
@@ -56,12 +56,30 @@ public class UsrMemberController {
     return ResultData.newData(joinRd, member);
   }
 
+  @RequestMapping("/usr/member/doLogout")
+  @ResponseBody
+  public ResultData doLogout(HttpSession httpSession) {
+    boolean isLogined = false;
+
+    if (httpSession.getAttribute("loginedMemberId") == null) {
+      isLogined = true;
+    }
+
+    if (isLogined) {
+      return ResultData.from("S-1", "이미 로그아웃 상태입니다.");
+    }
+
+    httpSession.removeAttribute("loginedMemberId");
+
+    return ResultData.from("S-2", "로그아웃 되었습니다.");
+  }
+
   @RequestMapping("/usr/member/doLogin")
   @ResponseBody
   public ResultData doLogin(HttpSession httpSession, String loginId, String loginPw) {
     boolean isLogined = false;
 
-    if( httpSession.getAttribute("loginedMemberId") != null) {
+    if (httpSession.getAttribute("loginedMemberId") != null) {
       isLogined = true;
     }
 
@@ -79,11 +97,11 @@ public class UsrMemberController {
 
     Member member = memberService.getMemberByLoginId(loginId);
 
-    if ( member == null ) {
+    if (member == null) {
       return ResultData.from("F-3", "존재하지 않는 로그인아이디 입니다.");
     }
 
-    if(member.getLoginPw().equals(loginPw) == false) {
+    if (member.getLoginPw().equals(loginPw) == false) {
       return ResultData.from("F-4", "비밀번호가 일치하지 않습니다.");
     }
 
