@@ -6,12 +6,10 @@ spring:
   devtools:
     livereload:
       enabled: true
-    restart:
-      enabled: true
-  thymeleaf:
-    cache: false
-    prefix: classpath:/templates/
-    suffix: .html
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     # driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
