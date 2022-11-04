@@ -29,7 +29,8 @@ dependencies {
 	/* jsp paser */
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	/* JSTL */
-	implementation group: 'org.eclipse.jetty', name: 'apache-jstl', version: '11.0.0'
+	implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
+
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	annotationProcessor 'org.projectlombok:lombok'
