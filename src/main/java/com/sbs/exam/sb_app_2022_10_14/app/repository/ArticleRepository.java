@@ -28,7 +28,7 @@ public interface ArticleRepository {
           LEFT JOIN member AS M
           ON A.memberId = M.id
           WHERE 1
-          AND A.id DESC
+          AND A.id = ${id}
           </script>
           """)
   public Article getForPrintArticle(@Param("id") int id);
