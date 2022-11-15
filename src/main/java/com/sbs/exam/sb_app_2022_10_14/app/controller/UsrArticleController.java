@@ -91,13 +91,13 @@ public class UsrArticleController {
     Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
     if ( article == null ) {
-      return Ut.jsHistoryBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
+      return rq.historyBackJsOnView(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
     }
 
     ResultData actorCanModifyRd = articleService.actorCanModify(rq.getLoginedMemberId(), article);
 
     if(actorCanModifyRd.isFail()) {
-      return Ut.jsHistoryBack(actorCanModifyRd.getMsg());
+      return rq.historyBackJsOnView(actorCanModifyRd.getMsg());
     }
 
     return "usr/article/modify";
