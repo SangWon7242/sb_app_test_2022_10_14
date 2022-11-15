@@ -72,6 +72,10 @@ public class UsrMemberController {
     return Ut.jsReplace("로그아웃 되었습니다.", "/");
   }
 
+  @RequestMapping("/usr/member/login")
+  public String shoLogin(HttpSession httpSession) {
+    return "usr/member/login";
+  }
   @RequestMapping("/usr/member/doLogin")
   @ResponseBody
   public String doLogin(HttpServletRequest req, String loginId, String loginPw) {
