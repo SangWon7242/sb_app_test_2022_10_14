@@ -7,15 +7,12 @@ import com.sbs.exam.sb_app_2022_10_14.app.vo.Article;
 import com.sbs.exam.sb_app_2022_10_14.app.vo.Board;
 import com.sbs.exam.sb_app_2022_10_14.app.vo.ResultData;
 import com.sbs.exam.sb_app_2022_10_14.app.vo.Rq;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -68,9 +65,11 @@ public class UsrArticleController {
       return rq.historyBackJsOnView(Ut.f("%d번 게시판은 존재하지 않습니다.", boardId));
     }
 
+    int articlesCount = articleService.getArticleCount(boardId);
     List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId(), boardId);
 
     model.addAttribute("board", board);
+    model.addAttribute("articlesCount", articlesCount);
     model.addAttribute("articles", articles);
 
     return "usr/article/list";
