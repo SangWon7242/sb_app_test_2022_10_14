@@ -60,7 +60,7 @@ public interface ArticleRepository {
           </if>
           </script>
           """)
-  public List<Article> getArticles(@Param("boardId") int boardId, int limitStart, int limitTake);
+  public List<Article> getArticles(@Param("boardId") int boardId, @Param("limitStart") int limitStart, @Param("limitTake") int limitTake);
 
   @Update("""
           <script>

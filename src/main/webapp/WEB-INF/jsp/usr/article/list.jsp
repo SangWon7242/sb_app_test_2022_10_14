@@ -45,10 +45,10 @@
         <button class="btn btn-link" type="button" onclick="history.back()">뒤로가기</button>
         <a class="btn btn-link" href="../article/write">게시물 작성</a>
       </div>
-      <div class="page-menu mt-3">
-        <div class="btn-group justify-center">
-          <c:forEach begin="1" end="10" var="i">
-            <a class="btn btn-sm ${param.page == i ? 'btn-active' : ''}" href="?page=${i}">${i}</a>
+      <div class="page-menu flex justify-center">
+        <div class="btn-group">
+          <c:forEach begin="1" end="${pagesCount}" var="i">
+            <a class="btn btn-sm ${page == i ? 'btn-active' : ''}" href="?page=${i}">${i}</a>
           </c:forEach>
         </div>
       </div>
