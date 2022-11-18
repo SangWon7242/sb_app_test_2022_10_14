@@ -21,10 +21,12 @@ public class UsrArticleController {
 
   private ArticleService articleService;
   private BoardService boardService;
+  private Rq rq;
 
-  public UsrArticleController(ArticleService articleService, BoardService boardService) {
+  public UsrArticleController(ArticleService articleService, BoardService boardService, Rq rq) {
     this.articleService = articleService;
     this.boardService = boardService;
+    this.rq = rq;
   }
 
   @RequestMapping("/usr/article/write")
@@ -34,21 +36,19 @@ public class UsrArticleController {
 
   @RequestMapping("/usr/article/doWrite")
   @ResponseBody
-  public String doWrite(HttpServletRequest req, String title, String body, String replaceUri) {
-    Rq rq = (Rq) req.getAttribute("rq");
-
-    if ( Ut.empty(title) ) {
+  public String doWrite(String title, String body, String replaceUri) {
+    if (Ut.empty(title)) {
       return rq.jsHistoryBack("title(을)를 입력해주세요.");
     }
 
-    if ( Ut.empty(body) ) {
+    if (Ut.empty(body)) {
       return rq.jsHistoryBack("body(을)를 입력해주세요.");
     }
 
-    ResultData<Integer> writeArticleRd = articleService.writeArticle(rq.getLoginedMemberId() , title, body);
+    ResultData<Integer> writeArticleRd = articleService.writeArticle(rq.getLoginedMemberId(), title, body);
     int id = writeArticleRd.getData1();
 
-    if ( Ut.empty(replaceUri) ) {
+    if (Ut.empty(replaceUri)) {
       replaceUri = Ut.f("../article/detail?id=%d", id);
     }
 
@@ -56,12 +56,10 @@ public class UsrArticleController {
   }
 
   @RequestMapping("/usr/article/list")
-  public String showList(HttpServletRequest req, Model model, int boardId) {
-    Rq rq = (Rq) req.getAttribute("rq");
-
+  public String showList(Model model, int boardId) {
     Board board = boardService.getBoardById(boardId);
 
-    if(board == null) {
+    if (board == null) {
       return rq.historyBackJsOnView(Ut.f("%d번 게시판은 존재하지 않습니다.", boardId));
     }
 
@@ -76,9 +74,7 @@ public class UsrArticleController {
   }
 
   @RequestMapping("/usr/article/detail")
-  public String showDetail(HttpServletRequest req, Model model, int id) {
-    Rq rq = (Rq) req.getAttribute("rq");
-
+  public String showDetail(Model model, int id) {
     Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
     model.addAttribute("article", article);
@@ -88,37 +84,33 @@ public class UsrArticleController {
 
   @RequestMapping("/usr/article/doDelete")
   @ResponseBody
-  public String doDelete(HttpServletRequest req, int id) {
-    Rq rq = (Rq) req.getAttribute("rq");
-
+  public String doDelete(int id) {
     Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
-    if ( article == null ) {
+    if (article == null) {
       return rq.jsHistoryBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
     }
 
-    if ( article.getMemberId() !=  rq.getLoginedMemberId()) {
+    if (article.getMemberId() != rq.getLoginedMemberId()) {
       return rq.jsHistoryBack("권한이 없습니다.");
     }
 
     articleService.deleteArticle(id);
 
-    return rq.jsReplace( Ut.f("%d번 게시물을 삭제하였습니다.", id), "../article/list");
+    return rq.jsReplace(Ut.f("%d번 게시물을 삭제하였습니다.", id), "../article/list");
   }
 
   @RequestMapping("/usr/article/modify")
-  public String showModify(HttpServletRequest req, Model model, int id) {
-    Rq rq = (Rq) req.getAttribute("rq");
-
+  public String showModify(Model model, int id) {
     Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
-    if ( article == null ) {
+    if (article == null) {
       return rq.historyBackJsOnView(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
     }
 
     ResultData actorCanModifyRd = articleService.actorCanModify(rq.getLoginedMemberId(), article);
 
-    if(actorCanModifyRd.isFail()) {
+    if (actorCanModifyRd.isFail()) {
       return rq.historyBackJsOnView(actorCanModifyRd.getMsg());
     }
 
@@ -129,18 +121,16 @@ public class UsrArticleController {
 
   @RequestMapping("/usr/article/doModify")
   @ResponseBody
-  public String doModify(HttpServletRequest req, int id, String title, String body) {
-    Rq rq = (Rq) req.getAttribute("rq");
-
+  public String doModify(int id, String title, String body) {
     Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
-    if ( article == null ) {
+    if (article == null) {
       return rq.jsHistoryBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
     }
 
     ResultData actorCanModifyRd = articleService.actorCanModify(rq.getLoginedMemberId(), article);
 
-    if(actorCanModifyRd.isFail()) {
+    if (actorCanModifyRd.isFail()) {
       return rq.jsHistoryBack(actorCanModifyRd.getMsg());
     }
 

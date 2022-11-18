@@ -3,6 +3,9 @@ package com.sbs.exam.sb_app_2022_10_14.app.vo;
 import com.sbs.exam.sb_app_2022_10_14.app.service.MemberService;
 import com.sbs.exam.sb_app_2022_10_14.app.util.Ut;
 import lombok.Getter;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+@Component
+@Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class Rq {
-
   @Getter
   private int loginedMemberId;
   @Getter
@@ -41,6 +45,8 @@ public class Rq {
     this.isLogined = isLogined;
     this.loginedMemberId = loginedMemberId;
     this.loginedMember = loginedMember;
+
+    this.req.setAttribute("rq", this);
   }
 
   public void printHistoryBackJs(String msg) {
