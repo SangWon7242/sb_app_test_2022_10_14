@@ -5,46 +5,46 @@ USE sb_app_2022_t;
 
 # 게시물 테이블 생성
 CREATE TABLE article (
-    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    regDate DATETIME NOT NULL,
-    updateDate DATETIME NOT NULL,
-    title CHAR(100) NOT NULL,
-    `body` TEXT NOT NULL
+	id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	regDate DATETIME NOT NULL,
+	updateDate DATETIME NOT NULL,
+	title CHAR(100) NOT NULL,
+	`body` TEXT NOT NULL
 );
 
 # 게시물, 테스트 데이터 생성
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
-title = '제목 1',
-`body` = '내용 1';
+title = '제목1',
+`body` = '내용1';
 
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
-title = '제목 2',
-`body` = '내용 2';
+title = '제목2',
+`body` = '내용2';
 
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
-title = '제목 3',
-`body` = '내용 3';
+title = '제목3',
+`body` = '내용3';
 
 # 회원 테이블 생성
 CREATE TABLE `member` (
-    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    regDate DATETIME NOT NULL,
-    updateDate DATETIME NOT NULL,
-    loginId CHAR(20) NOT NULL,
-    loginPw CHAR(60) NOT NULL,
-    `authLevel` SMALLINT(2) UNSIGNED DEFAULT 3 COMMENT '권한레벨 (3=일반, 7=관리자)',
-    `name` CHAR(20) NOT NULL,
-    `nickname` CHAR(20) NOT NULL,
-    cellphoneNo CHAR(20) NOT NULL,
-    email CHAR(50) NOT NULL,
-    delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '탈퇴여부(0=탈퇴전,1=탈퇴)',
-    delDate DATETIME COMMENT '탈퇴날짜'
+	id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	regDate DATETIME NOT NULL,
+	updateDate DATETIME NOT NULL,
+	loginId CHAR(20) NOT NULL,
+	loginPW CHAR(60) NOT NULL,
+	`authLevel` SMALLINT(2) UNSIGNED DEFAULT 3 COMMENT '권한레벨 (3=일반, 7=관리자)',
+	`name` CHAR(20) NOT NULL,
+	`nickname` CHAR(20) NOT NULL,
+	cellphoneNo CHAR(20) NOT NULL,
+	email CHAR(50) NOT NULL,
+	delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '탈퇴여부(0=탈퇴전, 1=탈퇴)',
+	delDate DATETIME COMMENT '탈퇴날짜'
 );
 
 # 회원, 테스트 데이터 생성(관리자 회원)
@@ -55,7 +55,7 @@ loginId = 'admin',
 loginPw = 'admin',
 authLevel = 7,
 `name` = '관리자',
-nickname = '관리자',
+`nickname` = '관리자',
 cellphoneNo = '01011111111',
 email = 'gotkdqja@gmail.com';
 
@@ -65,8 +65,8 @@ SET regDate = NOW(),
 updateDate = NOW(),
 loginId = 'user1',
 loginPw = 'user1',
-`name` = '사용자1',
-nickname = '사용자1',
+`name` = 'user1',
+`nickname` = 'user1',
 cellphoneNo = '01011111111',
 email = 'gotkdqja@gmail.com';
 
@@ -75,8 +75,8 @@ SET regDate = NOW(),
 updateDate = NOW(),
 loginId = 'user2',
 loginPw = 'user2',
-`name` = '사용자2',
-nickname = '사용자2',
+`name` = 'user2',
+`nickname` = 'user2',
 cellphoneNo = '01011111111',
 email = 'gotkdqja@gmail.com';
 
@@ -88,15 +88,16 @@ UPDATE article
 SET memberId = 2
 WHERE memberId = 0;
 
+
 # 게시판 테이블 생성
 CREATE TABLE board (
-    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    regDate DATETIME NOT NULL,
-    updateDate DATETIME NOT NULL,
-    `code` CHAR(50) NOT NULL UNIQUE COMMENT 'notice(공지사항),free1(자유게시판1),free2(자유게시판2),...',
-    `name` CHAR(50) NOT NULL UNIQUE COMMENT '게시판 이름',
-    delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '삭제여부(0=삭제전,1=삭제)',
-    delDate DATETIME COMMENT '삭제날짜'
+	id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	regDate DATETIME NOT NULL,
+	updateDate DATETIME NOT NULL,
+	`code` CHAR(50) NOT NULL UNIQUE COMMENT 'notice=공지사항,free1=자유게시판1,free2=자유게시판2...',
+	`name` CHAR(50) NOT NULL UNIQUE COMMENT '게시판 이름',
+	delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '삭제여부(0=삭제전, 1=삭제)',
+	delDate DATETIME COMMENT '삭제날짜'
 );
 
 # 기본 게시판 생성
@@ -131,8 +132,15 @@ insert into article
 (
 	regDate, updateDate, memberId, boardId, title, `body`
 )
-select now(), NOW(), FLOOR(RAND() * 2) + 1, FLOOR(RAND() * 2) + 1, concat('제목_', rand()), CONCAT('내용_', RAND())
+select NOW(), NOW(), FLOOR(RAND() * 2) + 1, FLOOR(RAND() * 2) + 1, concat('제목_', rand()), CONCAT('내용_', RAND())
 from article;
 */
 
-SELECT COUNT(*) FROM article;
+SELECT * FROM article;
+
+# 게시물 테이블 hitCount 칼럼을 추가
+ALTER TABLE article
+ADD COLUMN hitCount INT(10) UNSIGNED NOT NULL DEFAULT 0;
+
+
+

@@ -1,7 +1,9 @@
 package com.sbs.exam.sb_app_2022_10_14.app.vo;
 
 import lombok.Getter;
+import lombok.ToString;
 
+@ToString
 public class ResultData<DT> {
   @Getter
   private String resultCode;
