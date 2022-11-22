@@ -20,6 +20,14 @@ html > body {
   padding:10px;
 }
 
+.con-min-width {
+    min-width: 1100px;
+}
+
+.con {
+    width: 1100px;
+}
+
 /* 커스텀 */
 body {
   min-width: 800px;

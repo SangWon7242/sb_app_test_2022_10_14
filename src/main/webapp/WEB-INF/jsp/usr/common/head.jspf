@@ -22,8 +22,8 @@
 </head>
 <body>
 
-<header class="h-20 bg-gray-200">
-  <div class="container mx-auto h-full flex">
+<header class="h-20 bg-gray-200 con-min-width">
+  <div class="con mx-auto h-full flex">
     <a href="/" class="flex items-center px-3">
       로고
     </a>
@@ -63,7 +63,7 @@
 </header>
 
 <section class="mt-5 con-min-width">
-  <div class="container mx-auto px-3">
+  <div class="con mx-auto px-3">
     <h1>${pageTitle} 페이지</h1>
 </section>
 

@@ -4,13 +4,13 @@
 <c:set var="pageTitle" value="${board.name} 게시물 리스트"/>
 <%@ include file="../common/head.jspf" %>
 
-<section class="mt-5">
-  <div class="container mx-auto px-3">
+<section class="mt-5 con-min-width">
+  <div class="con mx-auto px-3">
     <div>
       게시물 개수 : ${articlesCount}개
     </div>
-    <div class="table-box-type-1">
-      <table border="1">
+    <div class="table-box-type-1 mt-3">
+      <table class="table table-fixed w-full">
         <colgroup>
           <col width="80"/>
           <col width="150"/>
@@ -35,7 +35,10 @@
             <th>${article.updateDate.substring(2, 16)}</th>
             <th>${article.extra__writerName}</th>
             <th>
-              <a class="btn-text-link" href="../article/detail?id=${article.id}">${article.title}</a>
+              <a class="btn-text-link block w-full truncate" href="../article/detail?id=${article.id}">
+                ${article.title}
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A dolore eligendi est fuga numquam sunt vel. Consectetur consequatur error explicabo ipsa maiores molestiae odio quam, quia repellat reprehenderit, temporibus ut.
+              </a>
             </th>
           </tr>
         </c:forEach>
