@@ -137,5 +137,14 @@ public interface ArticleRepository {
           WHERE id = #{id}               
           </script>
           """)
-  int increaseHitCount(int id);
+  public int increaseHitCount(int id);
+
+  @Select("""
+          <script>
+          SELECT hitCount
+          FROM article
+          WHERE id = #{id}             
+          </script>
+          """)
+  public int getArticleHitCount(int id);
 }
