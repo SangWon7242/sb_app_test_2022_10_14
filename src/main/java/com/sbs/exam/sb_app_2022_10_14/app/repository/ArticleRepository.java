@@ -137,7 +137,7 @@ public interface ArticleRepository {
           WHERE id = #{id}               
           </script>
           """)
-  public int increaseHitCount(int id);
+  public int increaseHitCount(@Param("id") int id);
 
   @Select("""
           <script>
@@ -146,5 +146,5 @@ public interface ArticleRepository {
           WHERE id = #{id}             
           </script>
           """)
-  public int getArticleHitCount(int id);
+  public int getArticleHitCount(@Param("id") int id);
 }

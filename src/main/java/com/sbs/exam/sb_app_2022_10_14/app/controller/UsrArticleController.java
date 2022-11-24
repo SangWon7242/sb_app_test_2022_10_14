@@ -102,8 +102,6 @@ public class UsrArticleController {
       return increaseHitCountRd;
     }
 
-
-
     ResultData<Integer> rd = ResultData.newData(increaseHitCountRd, "hitCount",
         articleService.getArticleHitCount(id));
 

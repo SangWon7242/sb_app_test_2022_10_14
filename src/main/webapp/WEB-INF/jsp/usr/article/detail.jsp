@@ -11,6 +11,13 @@
 
 <script>
   function ArticleDetail__increaseHitCount() {
+    const localStorageKey = `article__${param.id}__viewDone`;
+    if ( localStorage.getItem('article', 1) ) {
+      return;
+    };
+
+    localStorage.setItem('article', true);
+
     $.get(
       '../usr/article/doIncreaseHitCountRd',
       {
@@ -22,10 +29,10 @@
 
   $(function() {
     // 실전코드
-    // ArticleDetail__increaseHitCount();
+    ArticleDetail__increaseHitCount();
 
     // 임시코드
-    setTimeout(ArticleDetail__increaseHitCount(), 500);
+    // setTimeout(ArticleDetail__increaseHitCount(), 500);
   })
 </script>
 
