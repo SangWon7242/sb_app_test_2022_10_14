@@ -6,36 +6,35 @@
 
 <script>
   const params = {};
-  params.id = parseInt(${param.id});
+  params.id = parseInt('${param.id}');
 </script>
 
 <script>
-  function ArticleDetail__increaseHitCount() {
-    const localStorageKey = `article__${param.id}__viewDone`;
-    if ( localStorage.getItem('article', 1) ) {
-      return;
-    };
+	function ArticleDetail__increaseHitCount() {
+		const localStorageKey = 'article__' + params.id + '__viewDone';
 
-    localStorage.setItem('article', true);
+		if ( localStorage.getItem(localStorageKey) ) {
+			return;
+		}
 
-    $.get(
-      '../usr/article/doIncreaseHitCountRd',
-      {
-        id : params.id
-      }, function(data) {
-        $('.article-detail__hit-count').empty().html(data.data1);
-      }, 'json');
-  }
+		localStorage.setItem(localStorageKey, true);
 
-  $(function() {
-    // 실전코드
-    ArticleDetail__increaseHitCount();
+		$.get('../article/doIncreaseHitCountRd', {
+			id : params.id,
+			ajaxMode: 'Y'
+		}, function(data) {
+			$('.article-detail__hit-count').empty().html(data.data1);
+		}, 'json');
+	}
 
-    // 임시코드
-    // setTimeout(ArticleDetail__increaseHitCount(), 500);
-  })
+	$(function() {
+		// 실전코드
+		// ArticleDetail__increaseHitCount();
+
+		// 임시코드
+		setTimeout(ArticleDetail__increaseHitCount, 500);
+	})
 </script>
-
 
 <section class="mt-5">
   <div class="container mx-auto px-3">
@@ -55,11 +54,11 @@
         </tr>
         <tr>
           <th>작성날짜</th>
-          <td>${article.regDate}</td>
+          <td>${article.forPrintType2RegDate}</td>
         </tr>
         <tr>
           <th>수정날짜</th>
-          <td>${article.updateDate}</td>
+          <td>${article.forPrintType2UpdateDate}</td>
         </tr>
         <tr>
           <th>작성자</th>
