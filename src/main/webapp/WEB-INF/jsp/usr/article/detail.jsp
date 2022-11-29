@@ -39,7 +39,7 @@
 <section class="mt-5">
   <div class="container mx-auto px-3">
     <div class="table-box-type-1">
-      <table border="1">
+      <table class="table">
         <colgroup>
           <col width="200"/>
         </colgroup>
@@ -65,9 +65,15 @@
           <td>${article.extra__writerName}</td>
         </tr>
         <tr>
-          <th>조회수</th>
+          <th>조회</th>
           <td>
             <span class="badge badge-primary article-detail__hit-count">${article.hitCount}</span>
+          </td>
+        </tr>
+        <tr>
+          <th>추천</th>
+          <td>
+            <span class="badge badge-primary">${article.extra__goodReactionPoint}</span>
           </td>
         </tr>
         <tr>

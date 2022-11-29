@@ -34,6 +34,18 @@
             </td>
           </tr>
           <tr>
+            <th>조회</th>
+            <td>
+              <span class="badge badge-primary">${article.hitCount}</span>
+            </td>
+          </tr>
+          <tr>
+            <th>추천</th>
+            <td>
+              <span class="badge badge-primary">${article.extra__goodReactionPoint}</span>
+            </td>
+          </tr>
+          <tr>
             <th>작성자</th>
             <td>
               ${article.extra__writerName}
