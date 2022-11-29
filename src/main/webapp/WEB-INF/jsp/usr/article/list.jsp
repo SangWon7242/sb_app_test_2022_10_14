@@ -54,12 +54,11 @@
             <td>${article.forPrintType1RegDate}</td>
             <td>${article.forPrintType1UpdateDate}</td>
             <td>${article.hitCount}</td>
-            <td>${article.extra__goodReactionPoint}</td>
+            <td>${article.goodReactionPoint}</td>
             <td>${article.extra__writerName}</td>
             <th>
               <a class="btn-text-link block w-full truncate" href="../article/detail?id=${article.id}">
                 ${article.title}
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A dolore eligendi est fuga numquam sunt vel. Consectetur consequatur error explicabo ipsa maiores molestiae odio quam, quia repellat reprehenderit, temporibus ut.
               </a>
             </th>
           </tr>
