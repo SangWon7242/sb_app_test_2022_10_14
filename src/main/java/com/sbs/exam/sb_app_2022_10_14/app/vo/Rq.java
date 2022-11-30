@@ -90,7 +90,7 @@ public class Rq {
   }
 
   public String getCurrentUri() {
-    String currentUri = req.getRequestURI();
+    String currentUri = (String)req.getAttribute("javax.servlet.forward.request_uri");
     String queryString = req.getQueryString();
 
     if (queryString != null && queryString.length() > 0) {
