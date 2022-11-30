@@ -19,7 +19,8 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 
   @Override
   public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
-    rq.initOnBeforeActionInterceptor();
+    // rq.initOnBeforeActionInterceptor(); --> 이렇게 하면 rq가 필요 없는 곳에서도 만들어지기 때문에 비효율적이다.
+    req.setAttribute("rq", rq);
 
     return HandlerInterceptor.super.preHandle(req, resp, handler);
   }
