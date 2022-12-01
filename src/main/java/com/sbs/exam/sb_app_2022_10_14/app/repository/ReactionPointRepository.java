@@ -1,9 +1,6 @@
 package com.sbs.exam.sb_app_2022_10_14.app.repository;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface ReactionPointRepository {
@@ -28,7 +25,7 @@ public interface ReactionPointRepository {
           memberId = #{memberId},
           `point` = 1
           """)
-  void addGoodReactionPoint(@Param("memberId") int memberId,
+  public void addGoodReactionPoint(@Param("memberId") int memberId,
                             @Param("relTypeCode") String relTypeCode, @Param("relId") int relId);
 
   @Insert("""
@@ -40,6 +37,13 @@ public interface ReactionPointRepository {
           memberId = #{memberId},
           `point` = -1
           """)
-  void addBadReactionPoint(@Param("memberId") int memberId,
+  public void addBadReactionPoint(@Param("memberId") int memberId,
                             @Param("relTypeCode") String relTypeCode, @Param("relId") int relId);
+  @Delete("""
+          DELETE FROM reactionPoint
+          WHERE relTypeCode = #{relTypeCode}
+          AND relId = #{relId}
+          AND memberId = #{memberId}        
+          """)
+  public void deleteReactionPoint(@Param("memberId") int memberId, @Param("relTypeCode") String relTypeCode, @Param("relId") int relId);
 }
