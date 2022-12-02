@@ -3,11 +3,9 @@ package com.sbs.exam.sb_app_2022_10_14.app.controller;
 import com.sbs.exam.sb_app_2022_10_14.app.service.ArticleService;
 import com.sbs.exam.sb_app_2022_10_14.app.service.BoardService;
 import com.sbs.exam.sb_app_2022_10_14.app.service.ReactionPointService;
+import com.sbs.exam.sb_app_2022_10_14.app.service.ReplyService;
 import com.sbs.exam.sb_app_2022_10_14.app.util.Ut;
-import com.sbs.exam.sb_app_2022_10_14.app.vo.Article;
-import com.sbs.exam.sb_app_2022_10_14.app.vo.Board;
-import com.sbs.exam.sb_app_2022_10_14.app.vo.ResultData;
-import com.sbs.exam.sb_app_2022_10_14.app.vo.Rq;
+import com.sbs.exam.sb_app_2022_10_14.app.vo.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,12 +22,15 @@ public class UsrArticleController {
   private ArticleService articleService;
   private BoardService boardService;
   private ReactionPointService reactionPointService;
+  private ReplyService replyService;
   private Rq rq;
 
-  public UsrArticleController(ArticleService articleService, BoardService boardService, ReactionPointService reactionPointService, Rq rq) {
+  public UsrArticleController(ArticleService articleService, BoardService boardService,
+                              ReactionPointService reactionPointService, ReplyService replyService, Rq rq) {
     this.articleService = articleService;
     this.boardService = boardService;
     this.reactionPointService = reactionPointService;
+    this.replyService = replyService;
     this.rq = rq;
   }
 
@@ -92,6 +93,11 @@ public class UsrArticleController {
     Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
     model.addAttribute("article", article);
+
+    List<Reply> replies = replyService.getForPrintReplies(rq.getLoginedMember(), "article", id);
+
+    int repliesCount = replies.size();
+    model.addAttribute("repliesCount", repliesCount);
 
     ResultData actorCanMakeReactionPointRd
         = reactionPointService.actorCanMakeReactionPoint(rq.getLoginedMemberId(), "article", id);
