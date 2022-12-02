@@ -280,4 +280,4 @@ ALTER TABLE reply
 ADD COLUMN badReactionPoint INT(10) UNSIGNED NOT NULL DEFAULT 0;
 
 # 댓글 테이블에 인덱스 걸기
-ALTER TABLE `reply` ADD INDEX (`relTypeCode` , `relId`); 
+ALTER TABLE `reply` ADD INDEX (`relTypeCode` , `relId`);

@@ -32,3 +32,7 @@ html > body {
 body {
   min-width: 800px;
 }
+
+.reply-list__body > div {
+    min-height: 50px;
+}
