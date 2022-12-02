@@ -71,7 +71,7 @@ public class ArticleService {
 
   public ResultData actorCanModify(int actorId, Article article) {
     if ( article == null ) {
-      return ResultData.from("F-1", "권한이 없습니다.");
+      return ResultData.from("F-1", "게시물이 존재하지 않습니다.");
     }
 
     if ( article.getMemberId() != actorId ) {
@@ -83,7 +83,7 @@ public class ArticleService {
 
   public ResultData actorCanDelete(int actorId, Article article) {
     if ( article == null ) {
-      return ResultData.from("F-1", "권한이 없습니다.");
+      return ResultData.from("F-1", "게시물이 존재하지 않습니다.");
     }
 
     if ( article.getMemberId() != actorId ) {

@@ -33,6 +33,10 @@ body {
   min-width: 800px;
 }
 
+.deleteAndModify-btn > a:hover {
+    text-decoration : underline;
+}
+
 .reply-list__body > div {
     min-height: 50px;
 }
