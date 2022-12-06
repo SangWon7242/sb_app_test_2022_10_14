@@ -162,6 +162,34 @@
   }
 </script>
 
+<script>
+  // 댓글수정 관련
+  let ReplyModify__submitFormDone = false;
+  function ReplyModify__submitFormDone(form) {
+    if ( ReplyModify__submitFormDone ) {
+      return;
+    }
+
+    // 좌우공백 제거
+    form.body.value = form.body.value.trim();
+
+    if ( form.body.value.length == 0 ) {
+      alert('댓글을 입력해주세요.');
+      form.body.focus();
+      return;
+    }
+
+    if ( form.body.value.length < 2 ) {
+      alert('댓글내용을 2자이상 입력해주세요.');
+      form.body.focus();
+      return;
+    }
+
+    ReplyModify__submitFormDone = true;
+    form.submit();
+  }
+</script>
+
 <section class="mt-5 con-min-width">
   <div class="con mx-auto px-3">
     <h1>댓글 작성</h1>
